@@ -1,0 +1,76 @@
+<h1>Review Form</h1>
+    
+    <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+      <tr>
+      <div class="form-group">
+        <label for="hotelId">Hotel Id</label>
+        <input type="text" class="form-control" id="hotelId" name="hotelId"
+               [(ngModel)]="model.hotelId"
+                placeholder="Enter HotelId e.g 101" #hotelId = "ngModel" 
+               required pattern = "[0-9][0-9][0-9]" >
+
+               <div *ngIf="hotelId.invalid">
+                <span style="color: red;" *ngIf="hotelId.errors?.['required']">
+                   
+                   Hotel Id is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="hotelId.errors?.['pattern']">
+                   Hotel Id is not valid
+               </span>
+             </div>
+
+        
+      </div>
+    </tr>
+    <br><br>
+    
+    <tr>
+      <div class="form-group">
+        <label for="starRating">Number of Stars</label>
+        <div class="star-rating" >
+          <span class="star" [class.filled]="model.starRating >= 1" (click)="model.starRating = 1">&#9733;</span>
+          <span class="star" [class.filled]="model.starRating >= 2" (click)="model.starRating = 2">&#9733;</span>
+          <span class="star" [class.filled]="model.starRating >= 3" (click)="model.starRating = 3">&#9733;</span>
+          <span class="star" [class.filled]="model.starRating >= 4" (click)="model.starRating = 4">&#9733;</span>
+          <span class="star" [class.filled]="model.starRating >= 5" (click)="model.starRating = 5">&#9733;</span>
+        </div>
+      </div>
+      
+    </tr>
+    <br><br>
+    <tr>
+      <div class="form-group">
+        <label for="userReviewMsge">Content</label>
+        <textarea class="form-control" id="userReviewMsge" name="userReviewMsge"
+                  [(ngModel)]="model.userReviewMsge" placeholder="Enter Feedback e.g Good"
+                  
+                  #userReviewMsge="ngModel"  
+                  required pattern="[a-zA-Z]+">
+                </textarea>
+                  <div *ngIf="userReviewMsge.invalid">
+                      <span style="color: red;" *ngIf="userReviewMsge.errors?.['required']">
+                          FContent is required Field 
+                      </span> 
+                      <span style="color: red;" *ngIf="userReviewMsge.errors?.['pattern']">
+                          Content is not valid
+                      </span>
+               </div>
+      </div>
+    </tr>
+    <br><br>
+    
+
+
+    
+    <div class ="form-group">
+      <br/>
+      <input type = "submit" [disabled]="reviewForm.form.invalid" class = "forsubmit" value = "submit">
+      </div>
+
+    </form>
+ 
+  
+    <div *ngIf="status == true" class="alert alert-success mt-3">Your review has been submitted successfully.</div>
+    <div *ngIf="status == false" class="alert alert-danger mt-3">An error occurred while submitting your review.</div>
+
+

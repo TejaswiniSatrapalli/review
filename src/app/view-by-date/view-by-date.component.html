@@ -1,0 +1,20 @@
+<h4>Search By CheckIn Date</h4>
+<input type="date" #bookedFrom>
+<button (click)="getBooking2(bookedFrom.value)"> Load Booking </button>
+
+
+<h2>All Bookings List</h2>
+<div *ngFor="let b of allBooking">
+    <table>
+            <tr>
+              <td>bookedFrom: {{b.bookedFrom}}</td>
+             <td> bookedTo: {{b.bookedTo}}</td>
+            <td> name : {{b.name}}</td>
+            </tr>
+           
+            <hr/>
+    </table>
+</div>
+
+
+
